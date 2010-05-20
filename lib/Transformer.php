@@ -71,7 +71,7 @@ class Transformer {
     /**
      * @param mixed $in
      * @param mixed $out
-     * @return mixed $in
+     * @return mixed $out
      */
     public function transform($in, $out) {
         $data = $this->getManipulator()->extract($in);
