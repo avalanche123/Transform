@@ -15,15 +15,9 @@ don't want product price updates to change customer order
 history and financial information.
 
 You could write a manual getData() setData($data) type of
-transform, or you could use this Transform library:
+transform, or you could use this Transform library.
 
-    <?php
-    $map = array(
-        'id'    => 'productId',
-        'name'    => 'name',
-        'price'    => 'unitPrice',
-    );
-
+Assume you have two classes.
 Product class:
 
     <?php
@@ -42,7 +36,34 @@ Product class:
         }
     }
 
-Now instantiate your source class:
+LineItem class:
+
+    <?php
+    class LineItem {
+        private $productId;
+        private $name;
+        private $unitPrice;
+        public function getProductId() {
+            return $this->productId;
+        }
+        public function getName() {
+            return $this->name;
+        }
+        public function getUnitPrice() {
+            return $this->unitPrice;
+        }
+    }
+
+You need to define the properties map, that would guide the transformation:
+
+    <?php
+    $map = array(
+        'id'    => 'productId',
+        'name'    => 'name',
+        'price'    => 'unitPrice',
+    );
+
+Instantiate your source class:
 
     $product = new Product();
     $product->setId('unique-id');
