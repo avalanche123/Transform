@@ -23,11 +23,42 @@ transform, or you could use this Transform library:
         'name'    => 'name',
         'price'    => 'unitPrice',
     );
+
+Product class:
+
+    <?php
+    class Product {
+        private $id;
+        private $name;
+        private $price;
+        public function setId($id) {
+            $this->id = $id;
+        }
+        public function setName($name) {
+            $this->name = $name;
+        }
+        public function setPrice($price) {
+            $this->price = $price;
+        }
+    }
+
+Now instantiate your source class:
+
     $product = new Product();
     $product->setId('unique-id');
     $product->setName('T-Shirt');
     $product->setPrice(49.99);
-    
+
+Or just use array of data (useful when need to conver Web Services result):
+
+    $product = array(
+        'id' => 'unique-id',
+        'name' => 'T-Shirt',
+        'price' => 49.99,
+    );
+
+And tranform:
+
     $transformer = new Transformer();
     $transformer->setTransformationMap($map);
     
@@ -40,7 +71,7 @@ transform, or you could use this Transform library:
     $lineItem->getProductId();
     $lineItem->getName();
     $lineItem->getUnitPrice();
-    
+
 Another useful example is when you have some input data from
 one of your data sources, which already has the correct mappings,
 then you could use the PropertyManipulator class:
@@ -65,5 +96,5 @@ The other manipulator method, that can come in handy is extract():
     //...
     echo json_encode($manipulator->extract($lineItem));
     // outputs: { productId: "unique-id", name: "T-Shirt", unitPrice: 49.99 }
-    
+
 Happy coding!

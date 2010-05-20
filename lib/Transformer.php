@@ -69,12 +69,16 @@ class Transformer {
     }
     
     /**
-     * @param mixed $in
+     * @param mixed|array $in
      * @param mixed $out
      * @return mixed $out
      */
     public function transform($in, $out) {
-        $data = $this->getManipulator()->extract($in);
+        if (is_array($in)) {
+            $data = $in;
+        } else {
+            $data = $this->getManipulator()->extract($in);
+        }
         $result = array();
         foreach ($data as $key => $value) {
             if (isset ($this->transformationMap[$key])) {
