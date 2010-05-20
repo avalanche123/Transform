@@ -49,7 +49,7 @@ Now instantiate your source class:
     $product->setName('T-Shirt');
     $product->setPrice(49.99);
 
-Or just use array of data (useful when need to conver Web Services result):
+Or just use array of data (useful when need to convert Web Services result):
 
     $product = array(
         'id' => 'unique-id',
