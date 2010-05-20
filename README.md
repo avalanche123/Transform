@@ -55,7 +55,7 @@ LineItem class:
     }
 
 You need to define the properties map, that would guide the transformation, in a
-array('source property name' => 'target property', ...) name manner:
+array('source property name' => 'target property name', ...) manner:
 
     <?php
     $map = array(
