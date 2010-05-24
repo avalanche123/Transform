@@ -3,7 +3,7 @@ namespace Transform;
 
 use ReflectionProperty;
 
-require_once 'lib/PropertyManipulator.php';
+require_once 'lib/Transform/PropertyManipulator.php';
 require_once 'tests/Fixtures/Product.php';
 require_once 'tests/Fixtures/LineItem.php';
 
