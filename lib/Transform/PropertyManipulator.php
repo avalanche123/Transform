@@ -27,12 +27,18 @@ class PropertyManipulator {
      * @return mixed $object
      */
     public function inject($object, array $values) {
-        $object = $this->getObject($object);
-        $class = $this->getReflection($object);
-        foreach ($class->getProperties($this->filter) as $property) {
-            $this->ensureAccessible($property);
-            if (isset ($values[$property->getName()])) {
-                $property->setValue($object, $values[$property->getName()]);
+        if (is_array($object)) {
+            foreach ($values as $name => $value) {
+                $object[$name] = $value;
+            }
+        } else {
+            $object = $this->getObject($object);
+            $class = $this->getReflection($object);
+            foreach ($class->getProperties($this->filter) as $property) {
+                $this->ensureAccessible($property);
+                if (isset ($values[$property->getName()])) {
+                    $property->setValue($object, $values[$property->getName()]);
+                }
             }
         }
         return $object;

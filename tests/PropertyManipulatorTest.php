@@ -48,5 +48,18 @@ class PropertyManipulatorTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals('T-Shirt', $product->getName());
         $this->assertEquals(49.99, $product->getPrice());
     }
-    
+
+    public function testInjectArray()
+    {
+        $product = array();
+        $manipulator = new PropertyManipulator();
+        $product = $manipulator->inject($product, array(
+            'id' => 'simple-product',
+            'name' => 'T-Shirt',
+            'price' => 49.99,
+        ));
+        $this->assertEquals('simple-product', $product['id']);
+        $this->assertEquals('T-Shirt', $product['name']);
+        $this->assertEquals(49.99, $product['price']);
+    }
 }
